@@ -2,7 +2,7 @@ package algorithms.demo;
 
 import algorithms.mazeGenerators.*;
 import algorithms.search.*;
-//sandak was here!!!!!!
+//sandak was here!!!!!
 /**
  * Demo demonstrates a use of the search algorithms BFS and A*. 
  * @author Guy Golan
