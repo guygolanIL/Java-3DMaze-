@@ -107,6 +107,10 @@ public class Run {
 			byte b[]=new byte[maze.toByteArray().length];
 			in.read(b);
 			in.close();
+			
+			
+			Maze3d loaded=new Maze3d(b);
+			System.out.println(loaded.equals(maze));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,8 +120,7 @@ public class Run {
 		}
 		
 		
-//		Maze3d loaded=new Maze3d(b);
-//		System.out.println(loaded.equals(maze));
+		
 			
 	}
 }
