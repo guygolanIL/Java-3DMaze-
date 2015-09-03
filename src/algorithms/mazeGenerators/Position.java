@@ -78,6 +78,18 @@ public class Position {		//defining Position
 	public void setZ(int z) {
 		this.z = z;
 	}
+	public byte[] toByteArray() {
+		byte[] b = new byte[3] ;
+		int  i =0 ;
+		
+		b[i++] = (byte)this.getX();
+		b[i++] = (byte)this.getY();
+		b[i++] = (byte)this.getZ();
+		
+
+		return b;
+	}
+	
 	
 	
 }

@@ -1,9 +1,18 @@
 package Run;
 
-import algorithms.demo.Demo;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Maze3dGenerator;
+import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
+import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 
 public class Run {
 
@@ -73,13 +82,45 @@ public class Run {
 	
 	
 	public static void main(String[] args) {
+		//exe 1
 		//testMazeGenerator(new SimpleMaze3dGenerator());
 		//testMazeGenerator(new MyMaze3dGenerator());
 		
-		Demo d =new Demo();
+		//exe 2
+		//Demo d =new Demo();
+		//d.run();
 		
-		d.run();
+		//exe 3
+		
+		Maze3d maze = new MyMaze3dGenerator().generate(7, 7, 9);
+		
+		maze.printMaze();
+		
+		// save it to a file
+		try {
+			OutputStream out=new MyCompressorOutputStream(new FileOutputStream("1.maz"));
+			out.write(maze.toByteArray());
+			out.flush();
+			out.close();
+			
+			InputStream in=new MyDecompressorInputStream(new FileInputStream("1.maz"));
+			byte b[]=new byte[maze.toByteArray().length];
+			in.read(b);
+			in.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+//		Maze3d loaded=new Maze3d(b);
+//		System.out.println(loaded.equals(maze));
+			
 	}
+}
 	
 
-}
+	

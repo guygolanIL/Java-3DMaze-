@@ -48,6 +48,10 @@ public class Maze3d {
 		this.exit = null;
 	}
 	
+//	public Maze3d(byte[] b) {
+//		
+//	}
+
 	/**
 	 * fullWall is used to fill the maze with "cells" , creating a grid.
 	 */
@@ -639,6 +643,42 @@ public class Maze3d {
 	public void setCell(Position p,int value) {				//set a position's value
 		this.arr[p.getX()][p.getY()][p.getZ()] = value;
 		
+	}
+
+	public byte[] toByteArray() {
+		byte[] b = new byte[this.xAxis*this.yAxis*this.zAxis + 9];
+		
+		int i =0 ; 
+		
+		b[i++] = (byte)this.getxAxis();
+		b[i++] = (byte)this.getyAxis();
+		b[i++] = (byte)this.getzAxis();
+		
+		byte[] temp = this.getEntrance().toByteArray();
+		for (byte c : temp) {
+			b[i++] = c;
+		}
+		
+		temp = this.getExit().toByteArray();
+		for (byte c : temp) {
+			b[i++] = c;
+		}
+		
+		
+		for(int j = 0 ; j < this.getxAxis() ; j++)
+		{
+			for(int k = 0 ; k < this.getyAxis() ; k ++)
+			{
+				for(int t = 0 ; t < this.getzAxis() ; t++)
+				{
+					b[i++]  = (byte) this.arr[j][k][t] ;
+				}
+			}
+		}
+		
+		
+		
+		return b;
 	}
 
 }
