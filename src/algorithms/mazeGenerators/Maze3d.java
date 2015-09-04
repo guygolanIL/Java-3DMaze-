@@ -48,6 +48,11 @@ public class Maze3d {
 		this.exit = null;
 	}
 	
+	/**
+	 * The method receive a data array and build's a new 3DMaze.
+	 *
+	 * @param b - a byte array which contains the data of the 3DMaze.
+	 */
 	public Maze3d(byte[] b) {
 		int i = 0;
 		this.xAxis = (int)b[i++];
@@ -59,13 +64,42 @@ public class Maze3d {
 		
 		arr = new int[this.xAxis][this.yAxis][this.zAxis];
 		
-		for(int t = 0 ;i < this.xAxis ; i++ ){					
+		for(int t = 0 ;t < this.xAxis ; t++ ){					
 			for(int j = 0 ; j < this.yAxis ; j++){			
 				for(int h = 0 ; h < this.zAxis ; h++){
-					arr[t][j][h] = b[i++];
+					arr[t][j][h] = (int)b[i++];
 				}
 			}
 		}
+	}
+	
+	@Override
+	public boolean equals(Object maze) {
+		
+		
+		Maze3d m = (Maze3d)maze;
+		
+		if((this.getxAxis() !=  m.getxAxis()) || (this.getyAxis() !=  m.getyAxis()) || (this.getzAxis() !=  m.getzAxis()))
+		{
+			return false;
+		}
+		
+		if(!this.getEntrance().equals(m.getEntrance()) || !this.getExit().equals(m.getExit()))
+		{
+			return false;
+		}
+		
+		for(int i = 0 ;i < this.xAxis ; i++ ){					
+			for(int j = 0 ; j < this.yAxis ; j++){			
+				for(int h = 0 ; h < this.zAxis ; h++){
+					if(arr[i][j][h] != m.arr[i][j][h])
+					{
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -661,10 +695,16 @@ public class Maze3d {
 		
 	}
 
+	/**
+	 * The method converts the 3DMaze into an array of bytes.
+	 * contains [dimensions , entrance , exit , the maze's structure].
+	 * 
+	 * @return byte[] which contains the maze's data.
+	 */
 	public byte[] toByteArray() {
 		byte[] b = new byte[this.xAxis*this.yAxis*this.zAxis + 9];
 		
-		int i =0 ; 
+		int i = 0 ; 
 		
 		b[i++] = (byte)this.getxAxis();
 		b[i++] = (byte)this.getyAxis();

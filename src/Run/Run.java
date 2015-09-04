@@ -92,9 +92,7 @@ public class Run {
 		
 		//exe 3
 		
-		Maze3d maze = new MyMaze3dGenerator().generate(7, 7, 9);
-		
-		maze.printMaze();
+		Maze3d maze = new MyMaze3dGenerator().generate(3, 5, 5);
 		
 		// save it to a file
 		try {
@@ -110,17 +108,13 @@ public class Run {
 			
 			
 			Maze3d loaded=new Maze3d(b);
+			System.out.println("");
 			System.out.println(loaded.equals(maze));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 			
 	}
 }

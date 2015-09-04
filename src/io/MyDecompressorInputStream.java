@@ -18,6 +18,7 @@ public class MyDecompressorInputStream extends InputStream {
 	}
 	
 	public int read(byte[] b) throws IOException{
+		
 		byte last;
 		byte counter;
 		int fileSize= in.available();
@@ -30,6 +31,8 @@ public class MyDecompressorInputStream extends InputStream {
 			last = (byte)in.read();
 			counter = (byte)in.read();
 			
+			
+			
 			for(int j = 0 ; j < counter ; j++)
 			{
 				if(b.length <= k)
@@ -38,6 +41,8 @@ public class MyDecompressorInputStream extends InputStream {
 				b[k++] = last;
 			}
 		}
+		
+		
 		return -1;
 		
 	}

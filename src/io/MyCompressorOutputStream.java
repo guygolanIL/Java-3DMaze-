@@ -22,7 +22,8 @@ public class MyCompressorOutputStream extends OutputStream {
  	public void write(byte[] byteArr) throws IOException 
  	{
 	 	byte last = byteArr[0];
-	 	byte counter = -1;
+	 	byte counter = 0;
+	 	
 	 	
 	 	
  		for(byte b : byteArr)
@@ -34,10 +35,15 @@ public class MyCompressorOutputStream extends OutputStream {
  			else
  			{
  				out.write(last);
- 				out.write(counter+1);
+ 				out.write(counter);
  				last = b;
- 				counter = 0;
+ 				counter = 1;
  			}
+ 		}
+ 		if(counter > 0)
+ 		{
+ 			out.write(last);
+ 			out.write(counter);
  		}
  		
  	}
