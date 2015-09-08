@@ -102,6 +102,24 @@ public class Maze3d {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		
+		String s = "";
+		
+		for (int[][] is : arr) {
+			for (int[] is2 : is) {
+				for (int i : is2) {
+					s+=i+" ";
+				}
+				s+="\n";
+			}
+			s+="\n";
+		}
+		
+		return s;
+	}
+	
 	/**
 	 * fullWall is used to fill the maze with "cells" , creating a grid.
 	 */
